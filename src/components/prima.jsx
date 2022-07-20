@@ -1,10 +1,7 @@
-import { PitchDetector } from "https://esm.sh/pitchy@4";
 import { useEffect, useState } from "react";
-import './style.css';
+import { PitchDetector } from "https://esm.sh/pitchy@4";
 import { Link } from "react-router-dom";
 import { Waves } from "./svg/waves";
-
-import { useWindowSize } from "../hooks/useWindowsSize"
 
 
 let position = "30%";
@@ -39,11 +36,8 @@ const changeLineColor = async () => {
    
 }
 
-export const Dombyra = () => {
+export const Prima = () => {
 
-   const {width, height} = useWindowSize();
-
-   // console.log(height)
    const [pitch, setPitch] = useState(0);
    const [clarity, setClarity] = useState(0);
 
@@ -154,20 +148,21 @@ export const Dombyra = () => {
 
    }, [note, diffG, diffD]);
 
+
    return (
       <>
-         {/* <div className="dock">
+         <div className="dock">
             <ul>
                <li>
-                  <Link to="/qobyz"><span>Қылқобыз</span></Link>
+                  <Link to="/"><span>Домбыра</span></Link>
                </li>
                <li>
                   <span>Прима-қобыз</span>
                </li>
             </ul>
-         </div> */}
+         </div>
 
-         <div className="container">
+         <div className="container pr">
             <div className="back">
                <Waves/>
             </div>
@@ -184,6 +179,8 @@ export const Dombyra = () => {
                         setNote("D");
                      }}
                   >ре</button>
+
+               
                   <button
                      className={`g-note${gColorClass}`} 
                      onClick={() => {
@@ -191,10 +188,10 @@ export const Dombyra = () => {
                      }}
                   >соль</button>
                   <div className="center">
-                     <img className="pic" src="dombyra0.png" alt="dombyra pic" />
+                     <img className="picPrima" src="prima0.png" alt="dombyra pic" />
                   </div>
                </div>
-                  
+               
                
             </div>
          </div>
@@ -202,8 +199,7 @@ export const Dombyra = () => {
             <div className="pitch">{pitch}</div>
             <div className="clarity">{clarity}</div>
          </div>
-         
-
       </>
+      
    );
 };
