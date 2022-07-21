@@ -4,7 +4,7 @@ import './style.css';
 import { Link } from "react-router-dom";
 import { Waves } from "../svg/waves";
 
-import { useWindowSize } from "../../hooks/useWindowsSize"
+// import { useWindowSize } from "../../hooks/useWindowsSize"
 
 
 let position = "30%";
@@ -41,7 +41,7 @@ const changeLineColor = async () => {
 
 export const Dombyra = () => {
 
-   const {width, height} = useWindowSize();
+   // const {width, height} = useWindowSize();
 
    // console.log(height)
    const [pitch, setPitch] = useState(0);
