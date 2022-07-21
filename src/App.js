@@ -1,7 +1,8 @@
-import { Dombyra } from "./components/dombyra";
+import { Dombyra } from "./components/Dombyra/dombyra";
 import {Routes, Route} from "react-router-dom";
 import { Footer } from "./components/Footer/footer";
-import { Prima } from "./components/prima";
+import { Prima } from "./components/Prima/prima";
+import { Qobyz } from "./components/Qyl/qobyz";
 
 
 function App() {
@@ -9,8 +10,8 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Dombyra/>}/>
-        <Route path="/qobyz" element={<Prima/>}/>
-        {/* <Route path="/qyl-qobyz" element={<Qobyz/>}/> */}
+        <Route path="/qobyz" element={<Qobyz/>}/>
+        <Route path="/prima-qobyz" element={<Prima/>}/>
       </Routes>
       <Footer/>
     </div>

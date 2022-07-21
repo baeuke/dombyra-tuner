@@ -1,10 +1,8 @@
-import { PitchDetector } from "https://esm.sh/pitchy@4";
 import { useEffect, useState } from "react";
-import './style.css';
+import { PitchDetector } from "https://esm.sh/pitchy@4";
 import { Link } from "react-router-dom";
-import { Waves } from "./svg/waves";
-
-import { useWindowSize } from "../hooks/useWindowsSize"
+import { Waves } from "../svg/waves";
+import './style.css';
 
 
 let position = "30%";
@@ -36,14 +34,10 @@ const changeLineColor = async () => {
    } catch (err) {
       console.log("error: " + err);
    }
-   
 }
 
-export const Dombyra = () => {
+export const Prima = () => {
 
-   const {width, height} = useWindowSize();
-
-   // console.log(height)
    const [pitch, setPitch] = useState(0);
    const [clarity, setClarity] = useState(0);
 
@@ -51,6 +45,8 @@ export const Dombyra = () => {
 
    const [diffG, setDiffG] = useState(0);
    const [diffD, setDiffD] = useState(0);
+   const [diffE, setDiffE] = useState(0);
+   const [diffA, setDiffA] = useState(0);
 
    
    function updatePitch(analyserNode, detector, input, sampleRate) {
@@ -67,7 +63,9 @@ export const Dombyra = () => {
             
             setPitch(frq);
             setDiffG(frq - 195.9977);
-            setDiffD(frq - 146.8324);
+            setDiffD(frq - 293.6648);
+            setDiffA(frq - 440);
+            setDiffE(frq - 659.2551);
             setClarity(Math.round(clarity * 100));
             global = frq;
          } else {
@@ -98,6 +96,8 @@ export const Dombyra = () => {
 
    let dColorClass = (note === "D") ? " green" : "";
    let gColorClass = (note === "G") ? " green" : "";
+   let aColorClass = (note === "A") ? " green" : "";
+   let eColorClass = (note === "E") ? " green" : "";
 
 
    useEffect(() => {
@@ -126,6 +126,7 @@ export const Dombyra = () => {
             position = `calc(50% - 3px + 10px + ${ parseInt(absDiff, 0) }px)`;
          }
       } 
+
       if (note == "D" && diffD) {
          // console.log("in D")
          // console.log(diffD)
@@ -152,22 +153,83 @@ export const Dombyra = () => {
          }
       }
 
-   }, [note, diffG, diffD]);
+      if (note == "A" && diffA) {
+         // console.log("in D")
+         // console.log(diffD)
+         const absDiff = Math.abs(diffA);
+         // console.log("D[ " + absDiff + " ]")
+         if (absDiff <= 0.2) {
+            console.log("in A exact")
+            position = 'calc(50% - 3px)';
+            changeLineColor();
+            playAudio();
+            lineColorClass = "";
+         } else if (diffA < -0.2 && diffA > nthrshld) {
+         
+            position = `calc(50% - 3px - 2px - ${ parseInt(absDiff, 0) }px)`;
+         } else if (diffA > 0.2 && diffA < threshold) {
+         
+            position = `calc(50% - 3px + 2px + ${ parseInt(absDiff, 0) }px)`;
+         }else if (diffA <= nthrshld) {
+         
+            position = `calc(50% - 3px - 8px - ${ parseInt(absDiff, 0) }px)`;
+         } else if (diffA >= threshold) {
+            
+            position = `calc(50% - 3px + 8px + ${ parseInt(absDiff, 0) }px)`;
+         }
+      }
+
+      if (note == "E" && diffE) {
+         // console.log("in G")
+         // console.log(diffG)
+         const absDiff = Math.abs(diffE);
+         // console.log("G[ " + absDiff + " ]")
+         if (absDiff <= 0.2) {
+   
+            position = 'calc(50% - 3px)';
+            changeLineColor();
+            playAudio();
+            lineColorClass = "";
+         } else if (diffE < -0.2 && diffE > nthrshld) {
+   
+            position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
+         } else if (diffE > 0.2 && diffE < threshold) {
+         
+            position = `calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`;
+         } else if (diffE <= nthrshld) {
+      
+            position = `calc(50% - 3px - 10px - ${ parseInt(absDiff, 0) }px)`;
+         } else if (diffE >= threshold) {
+      
+            position = `calc(50% - 3px + 10px + ${ parseInt(absDiff, 0) }px)`;
+         }
+      } 
+   }, [note, diffG, diffD, diffA, diffE]);
+
 
    return (
       <>
-         {/* <div className="dock">
+         <div className="dock-wrapper">
+               {/* <div className="dock"> */}
             <ul>
                <li>
-                  <Link to="/qobyz"><span>Қылқобыз</span></Link>
+                  <Link to="/qobyz">
+                     <span>Қылқобыз</span>
+                     <img src="qyl-icons.png" alt="" />
+                  </Link>
                </li>
                <li>
-                  <span>Прима-қобыз</span>
+                  <Link to="/">
+                     <span>Домбыра</span>
+                     <img src="dombyra-icons.png" alt="" />
+                  </Link>
                </li>
             </ul>
-         </div> */}
+               {/* </div>   */}
+         </div>
 
-         <div className="container">
+
+         <div className="container pr">
             <div className="back">
                <Waves/>
             </div>
@@ -177,24 +239,40 @@ export const Dombyra = () => {
             </div>
             <div className="main">
                {/* <div className="left"> */}
-               <div className="inmain">
+               <div className="inmain-prima">
                   <button
-                     className={`d-note${dColorClass}`} 
+                     className={`btn e-note-prima${eColorClass}`} 
+                     onClick={() => {
+                        setNote("E");
+                     }}
+                  >ми</button>
+
+                  <button
+                     className={`btn a-note-prima${aColorClass}`} 
+                     onClick={() => {
+                        setNote("A");
+                     }}
+                  >ля</button>
+
+                  <button
+                     className={`btn d-note-prima${dColorClass}`} 
                      onClick={() => {
                         setNote("D");
                      }}
                   >ре</button>
+
+               
                   <button
-                     className={`g-note${gColorClass}`} 
+                     className={`btn g-note-prima${gColorClass}`} 
                      onClick={() => {
                         setNote("G");
                      }}
                   >соль</button>
                   <div className="center">
-                     <img className="pic" src="dombyra0.png" alt="dombyra pic" />
+                     <img className="pic" src="prima0.png" alt="dombyra pic" />
                   </div>
                </div>
-                  
+               
                
             </div>
          </div>
@@ -202,8 +280,7 @@ export const Dombyra = () => {
             <div className="pitch">{pitch}</div>
             <div className="clarity">{clarity}</div>
          </div>
-         
-
       </>
+      
    );
 };

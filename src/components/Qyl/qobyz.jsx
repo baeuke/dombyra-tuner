@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { PitchDetector } from "https://esm.sh/pitchy@4";
 import { Link } from "react-router-dom";
-import { Waves } from "./svg/waves";
+import { Waves } from "../svg/waves";
+import './style.css';
 
 
 let position = "30%";
@@ -33,17 +34,16 @@ const changeLineColor = async () => {
    } catch (err) {
       console.log("error: " + err);
    }
-   
 }
 
-export const Prima = () => {
+export const Qobyz = () => {
 
    const [pitch, setPitch] = useState(0);
    const [clarity, setClarity] = useState(0);
 
-   const [note, setNote] = useState("G");
+   const [note, setNote] = useState("A");
 
-   const [diffG, setDiffG] = useState(0);
+   const [diffA, setDiffA] = useState(0);
    const [diffD, setDiffD] = useState(0);
 
    
@@ -60,7 +60,7 @@ export const Prima = () => {
          if (Math.abs(frq - global) < 200) {
             
             setPitch(frq);
-            setDiffG(frq - 195.9977);
+            setDiffA(frq - 220);
             setDiffD(frq - 146.8324);
             setClarity(Math.round(clarity * 100));
             global = frq;
@@ -91,32 +91,32 @@ export const Prima = () => {
    
 
    let dColorClass = (note === "D") ? " green" : "";
-   let gColorClass = (note === "G") ? " green" : "";
+   let aColorClass = (note === "A") ? " green" : "";
 
 
    useEffect(() => {
-      if (note == "G" && diffG) {
+      if (note == "A" && diffA) {
          // console.log("in G")
-         // console.log(diffG)
-         const absDiff = Math.abs(diffG);
+         // console.log(diffA)
+         const absDiff = Math.abs(diffA);
          // console.log("G[ " + absDiff + " ]")
          if (absDiff <= 0.2) {
-            console.log("in G exact")
+            console.log("in A exact")
             position = 'calc(50% - 3px)';
             changeLineColor();
             playAudio();
             lineColorClass = "";
-         } else if (diffG < -0.2 && diffG > nthrshld) {
-            console.log("in G near LESS")
+         } else if (diffA < -0.2 && diffA > nthrshld) {
+            console.log("in A near LESS")
             position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
-         } else if (diffG > 0.2 && diffG < threshold) {
-            console.log("in G near MORE")
+         } else if (diffA > 0.2 && diffA < threshold) {
+            console.log("in A near MORE")
             position = `calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`;
-         } else if (diffG <= nthrshld) {
-            console.log("in G LESS")
+         } else if (diffA <= nthrshld) {
+            console.log("in A LESS")
             position = `calc(50% - 3px - 10px - ${ parseInt(absDiff, 0) }px)`;
-         } else if (diffG >= threshold) {
-            console.log("in G MORE")
+         } else if (diffA >= threshold) {
+            console.log("in A MORE")
             position = `calc(50% - 3px + 10px + ${ parseInt(absDiff, 0) }px)`;
          }
       } 
@@ -146,23 +146,32 @@ export const Prima = () => {
          }
       }
 
-   }, [note, diffG, diffD]);
+   }, [note, diffA, diffD]);
 
 
    return (
       <>
-         <div className="dock">
-            <ul>
-               <li>
-                  <Link to="/"><span>Домбыра</span></Link>
-               </li>
-               <li>
-                  <span>Прима-қобыз</span>
-               </li>
-            </ul>
+         <div className="dock-wrapper">
+            {/* <div className="dock"> */}
+               <ul>
+                  <li>
+                     <Link to="/">
+                        <span>Домбыра</span>
+                        <img src="dombyra-icons.png" alt="" />
+                     </Link>
+                  </li>
+                  <li>
+                     <Link to="/prima-qobyz">
+                        <span>Прима-қобыз</span>
+                        <img src="prima-icons.png" alt="" />
+                     </Link>
+                  </li>
+               </ul>
+            {/* </div>   */}
          </div>
+   
 
-         <div className="container pr">
+         <div className="container">
             <div className="back">
                <Waves/>
             </div>
@@ -172,9 +181,9 @@ export const Prima = () => {
             </div>
             <div className="main">
                {/* <div className="left"> */}
-               <div className="inmain">
+               <div className="inmain-qyl">
                   <button
-                     className={`d-note${dColorClass}`} 
+                     className={`btn d-note-qyl${dColorClass}`} 
                      onClick={() => {
                         setNote("D");
                      }}
@@ -182,13 +191,13 @@ export const Prima = () => {
 
                
                   <button
-                     className={`g-note${gColorClass}`} 
+                     className={`btn a-note-qyl${aColorClass}`} 
                      onClick={() => {
-                        setNote("G");
+                        setNote("A");
                      }}
-                  >соль</button>
+                  >ля</button>
                   <div className="center">
-                     <img className="picPrima" src="prima0.png" alt="dombyra pic" />
+                     <img className="pic" src="qyl1.png" alt="dombyra pic" />
                   </div>
                </div>
                

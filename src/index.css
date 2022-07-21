@@ -15,11 +15,7 @@ body {
    background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%); */
 }
 
-.dock {
-   position: absolute;
-   right: 1vw;
-   bottom: 20vh;
-}
+
 
 .pr {
    background-color: #A9C9FF;
@@ -137,18 +133,6 @@ body {
    z-index: 2;
 }
 
-.picPrima {
-   display: block;
-   max-width: 100%;
-   width: 100%;
-   height: 100%;
-   min-height: 330px;
-   position: relative;
-   object-fit: contain;
-   object-position: center top;
-   z-index: 2;
-}
-
 
 .numbers {
    font-size: 25px;
@@ -159,14 +143,13 @@ body {
 
 
 
-.d-note {
+.btn {
    all: unset;
-
+   
    text-align: center;
    font-size: 25px;
    height: 70px;
    width: 70px;
-
    color: #fff;
    border: 2px solid #fff;
    border-radius: 50%;
@@ -174,22 +157,6 @@ body {
    cursor: pointer;
 }
 
-
-
-.g-note {
-   all: unset;
-
-   text-align: center;
-   font-size: 25px;
-   height: 70px;
-   width: 70px;
-
-   color: #fff;
-   border: 2px solid #fff;
-   border-radius: 50%;
-   z-index: 5;
-   cursor: pointer;
-}
 
 .g-note:hover {
 
@@ -215,4 +182,62 @@ body {
 
 .theAnswer {
    background-color: #31d233;
+}
+
+
+
+.dock-wrapper {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   /* margin: 0 auto; */
+   position: absolute;
+      right: 0.5vw;
+      bottom: 20vh;
+      width: 10vh;
+      height: 220px;
+      background-color: rgba(45, 32, 81, 0.4);
+      border-radius: 10px 10px 10px 10px;
+}
+
+.dock-wrapper ul {
+   padding: 0;
+}
+.dock-wrapper li {
+   list-style-type: none;
+   /* display: block; */
+   position: relative;
+}
+
+.dock-wrapper li img {
+   width: 100px;
+   transition: all 0.4s;
+}
+
+.dock-wrapper li:hover img {
+   margin: 30px 0;
+
+   transform: scale(1.5);
+}
+
+/* .dock-wrapper li:hover + li img {
+   margin-right: 30px 0;
+   transform: scale(1.1);
+} */
+
+.dock-wrapper li span {
+   display: none;
+   position: absolute;
+   width: 100%;
+   right: 100px;
+   background-color: rgba(45, 32, 81, 0.4);
+   padding: 4px 8px;
+   border-radius: 10px;
+   text-align: center;
+}
+
+.dock-wrapper li:hover span {
+   display: block;
+   color: #fff;
 }

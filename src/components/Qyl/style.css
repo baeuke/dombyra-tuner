@@ -1,0 +1,32 @@
+.inmain-qyl {
+   grid-template-rows: 70px 1fr;
+   grid-template-columns: 70px 400px 70px;
+   position: absolute;
+   max-width: 100%;
+   justify-content: center;
+   /* padding-top: 5vh; */
+   height: 100%;
+   width: 100%;
+   /* box-sizing: border-box; */
+   display: grid;
+   gap: 8vh 8px;
+}
+
+.d-note-qyl {
+   /* transform: translateY(150%); */
+   grid-row-start: 1;
+   grid-row-end: 2;
+   grid-column-start: 3;
+   grid-column-end: auto;
+   margin-top: 12vh;
+}
+
+
+.a-note-qyl {
+   grid-row-start: 2;
+   grid-row-end: 3;
+   
+   grid-column-start: 1;
+   grid-column-end: 2;
+   margin-top: 2vh;
+}
