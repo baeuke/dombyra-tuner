@@ -1,4 +1,4 @@
-import { PitchDetector } from "https://esm.sh/pitchy@4";
+import { PitchDetector } from "pitchy";
 import { useEffect, useState } from "react";
 import './style.css';
 import { Link } from "react-router-dom";

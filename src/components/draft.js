@@ -1,4 +1,4 @@
-      import { PitchDetector } from "https://esm.sh/pitchy@4";
+      import { PitchDetector } from "pitchy";
 
       const history = [];
       let historyLength = 100;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PitchDetector } from "https://esm.sh/pitchy@4";
+import { PitchDetector } from "pitchy";
 import { Link } from "react-router-dom";
 import { Waves } from "../svg/waves";
 import './style.css';
