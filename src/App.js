@@ -10,8 +10,8 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Dombyra/>}/>
-        <Route path="/qobyz" element={<Qobyz/>}/>
-        <Route path="/prima-qobyz" element={<Prima/>}/>
+        {/* <Route path="/qobyz" element={<Qobyz/>}/> */}
+        {/* <Route path="/prima-qobyz" element={<Prima/>}/> */}
       </Routes>
       <Footer/>
     </div>
