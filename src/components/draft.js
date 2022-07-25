@@ -1,4 +1,49 @@
+      
+      const my_buttons = [
+         {
+            type: 1,
+            label: "sth"
+         }
+      ];
+
+      //...
+      
+      {my_buttons.map( (item)=> (
+         <button key={item.type} type="button" className="btn" onClick={(event) => handlingFunc(item, event)}> // in case you want event and item
+            {item.label}
+         
+         </button>
+      ))};
+      
+      const handlingFunc = ({key}) => { // {key} = destructuring
+
+      }
+      //key needs to be unique
+      
+
+      // when you need to pass parameters in jsx, better to use callback:
+      onClick={()=>someFunc(params)}
+
+      //if no params:
+      onClick={someFunc} // and it won't be called when rerendering
+
+
+      setItem((prevElems) => [newItem, ...prevElements])
+      // due to immutability of states == states cannot mutate (update?)
+      // that is, we don't touch an old state directly, never
+      //------------
+
+      const [item, setItem] = useState();
+
+      const handle = (event) => {
+         setItem(event.target.value)
+      }
+
+      <input value={item} onChange={handle}></input>
+      
+      
       import { PitchDetector } from "pitchy";
+      import { useState } from "react";
 
       const history = [];
       let historyLength = 100;
