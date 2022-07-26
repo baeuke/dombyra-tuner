@@ -1,0 +1,17 @@
+.under {
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   color: white;
+   position: relative;
+   font-size: 40px;
+}
+
+.fof {
+   font-size: 100px;
+   position: absolute;
+   top: 20%;
+}

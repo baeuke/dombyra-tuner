@@ -13,6 +13,13 @@ body {
    /* top:  */
    /* background-color: #A9C9FF;
    background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%); */
+
+   background: #7F7FD5;
+      /* fallback for old browsers */
+   background: -webkit-linear-gradient(to left, #84d4ea, #86A8E7, #7F7FD5);
+      /* Chrome 10-25, Safari 5.1-6 */
+   background: linear-gradient(to left, #84d4ea, #86A8E7, #7F7FD5);
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 
