@@ -1,8 +1,9 @@
 import { PitchDetector } from "pitchy";
 import { useEffect, useState } from "react";
 import './style.css';
-import { Link } from "react-router-dom";
+
 import { Waves } from "../svg/waves";
+import { Dock } from "../Dock/dock"
 
 // import { useWindowSize } from "../../hooks/useWindowsSize"
 
@@ -44,6 +45,7 @@ export const Dombyra = () => {
    // const {width, height} = useWindowSize();
 
    // console.log(height)
+   // const [pitch, clairty, ] = useInstrument(...);
    const [pitch, setPitch] = useState(0);
    const [clarity, setClarity] = useState(0);
 
@@ -156,25 +158,7 @@ export const Dombyra = () => {
 
    return (
       <>
-         <div className="dock-wrapper">
-            {/* <div className="dock"> */}
-               <ul>
-                  <li>
-                     <Link to="/qobyz">
-                        <span>Қылқобыз</span>
-                        <img src="qyl-icons.png" alt="" />
-                     </Link>
-                  </li>
-                  <li>
-                     <Link to="/prima-qobyz">
-                        <span>Прима-қобыз</span>
-                        <img src="prima-icons.png" alt="" />
-                     </Link>
-                  </li>
-               </ul>
-            {/* </div>   */}
-         </div>
-
+         <Dock/>
 
          <div className="container">
             <div className="back">

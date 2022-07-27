@@ -69,8 +69,10 @@ export const Qobyz = () => {
          }
       }
 
+
       window.setTimeout(() => updatePitch(analyserNode, detector, input, sampleRate), 100);
    }
+
 
    useEffect(() => {
       // const audioContext = new window.AudioContext();

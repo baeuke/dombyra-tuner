@@ -165,15 +165,11 @@ body {
 }
 
 
-.g-note:hover {
-
+.btn:hover {
    color: #000;
 }
 
-.d-note:hover {
 
-   color: #000;
-}
 .green {
    /* background-color: green; */
    color: #000;

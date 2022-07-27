@@ -11,8 +11,8 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Dombyra/>}/>
-        <Route path="/qobyz" element={<Under/>}/>
-        <Route path="/prima-qobyz" element={<Under/>}/>
+        <Route path="/qobyz" element={<Qobyz/>}/>
+        <Route path="/prima-qobyz" element={<Prima/>}/>
       </Routes>
       <Footer/>
     </div>
