@@ -37,11 +37,15 @@ body {
    grid-template: 1fr 1.5fr / 0.5fr 2fr 0.5fr; /*  rows / columns  */
 }
 
+
+
 .waves {
    position: absolute;
+   height: auto;
    fill: white;
    left: -7px;
-   width: 100vw;
+   width: 110vw;
+   /* width: auto; */
    stroke: #fff;
    stroke-miterlimit: 10;
    stroke-width: 8px;
@@ -73,13 +77,14 @@ body {
 
 
 .pointer {
-   background-color: green;
+   background-color: #2d4693;
    height: 50px;
    width: 6px;
    position: absolute;
-   top: 25%;
+   top: 17%;
    transition: all .4s;
    z-index: 4;
+   border-radius: 5px;
 }
 
 
@@ -174,73 +179,16 @@ body {
    /* background-color: green; */
    color: #000;
    background-color: #fff;
-   border-color: #31d233;
-   /* background-image: linear-gradient(to right, #006175 0%, #00a950 100%); */
-   box-shadow: 0 0 8px 0 #31d233 inset, 0 0 8px 4px #31d233;
+   border-color: #2d4693;
+   box-shadow: 0 0 0 0 #2d4693 inset, 0 0 1px 3px #2d4693;
    /* box-shadow: 0 0 10px 4px #31d233; */
 }
 
 
 
-
 .theAnswer {
    background-color: #31d233;
+   background-color: #ebf297;
+   transition: all 0.3s step-end;
 }
 
-
-
-.dock-wrapper {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   /* margin: 0 auto; */
-   position: absolute;
-      right: 0.5vw;
-      bottom: 20vh;
-      width: 10vh;
-      height: 220px;
-      background-color: rgba(45, 32, 81, 0.4);
-      border-radius: 10px 10px 10px 10px;
-}
-
-.dock-wrapper ul {
-   padding: 0;
-}
-.dock-wrapper li {
-   list-style-type: none;
-   /* display: block; */
-   position: relative;
-}
-
-.dock-wrapper li img {
-   width: 100px;
-   transition: all 0.4s;
-}
-
-.dock-wrapper li:hover img {
-   margin: 30px 0;
-
-   transform: scale(1.5);
-}
-
-/* .dock-wrapper li:hover + li img {
-   margin-right: 30px 0;
-   transform: scale(1.1);
-} */
-
-.dock-wrapper li span {
-   display: none;
-   position: absolute;
-   width: 100%;
-   right: 100px;
-   background-color: rgba(45, 32, 81, 0.4);
-   padding: 4px 8px;
-   border-radius: 10px;
-   text-align: center;
-}
-
-.dock-wrapper li:hover span {
-   display: block;
-   color: #fff;
-}

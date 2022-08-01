@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { PitchDetector } from "pitchy";
 import { Link } from "react-router-dom";
 import { Waves } from "../svg/waves";
 import './style.css';
+import { Dock } from "../Dock/dock";
 
 
 let position = "30%";
@@ -25,16 +26,7 @@ const playAudio = async () => {
    }
 }
 
-const changeLineColor = async () => {
-   
-   try {
-      await setTimeout(() => {
-         lineColorClass = " theAnswer";
-      }, 2000);
-   } catch (err) {
-      console.log("error: " + err);
-   }
-}
+let boolzhan = true;
 
 export const Prima = () => {
 
@@ -107,11 +99,10 @@ export const Prima = () => {
          const absDiff = Math.abs(diffG);
          // console.log("G[ " + absDiff + " ]")
          if (absDiff <= 0.2) {
-            console.log("in G exact")
+
             position = 'calc(50% - 3px)';
-            changeLineColor();
-            playAudio();
-            lineColorClass = "";
+            if (boolzhan) {playAudio();}
+
          } else if (diffG < -0.2 && diffG > nthrshld) {
             console.log("in G near LESS")
             position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
@@ -133,11 +124,10 @@ export const Prima = () => {
          const absDiff = Math.abs(diffD);
          // console.log("D[ " + absDiff + " ]")
          if (absDiff <= 0.2) {
-            console.log("in D exact")
+            
             position = 'calc(50% - 3px)';
-            changeLineColor();
-            playAudio();
-            lineColorClass = "";
+            if (boolzhan) {playAudio();}
+
          } else if (diffD < -0.2 && diffD > nthrshld) {
             console.log("in D near LESS")
             position = `calc(50% - 3px - 2px - ${ parseInt(absDiff, 0) }px)`;
@@ -159,11 +149,10 @@ export const Prima = () => {
          const absDiff = Math.abs(diffA);
          // console.log("D[ " + absDiff + " ]")
          if (absDiff <= 0.2) {
-            console.log("in A exact")
+
             position = 'calc(50% - 3px)';
-            changeLineColor();
-            playAudio();
-            lineColorClass = "";
+            if (boolzhan) {playAudio();}
+
          } else if (diffA < -0.2 && diffA > nthrshld) {
          
             position = `calc(50% - 3px - 2px - ${ parseInt(absDiff, 0) }px)`;
@@ -187,9 +176,8 @@ export const Prima = () => {
          if (absDiff <= 0.2) {
    
             position = 'calc(50% - 3px)';
-            changeLineColor();
-            playAudio();
-            lineColorClass = "";
+            if (boolzhan) {playAudio();}
+
          } else if (diffE < -0.2 && diffE > nthrshld) {
    
             position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
@@ -206,36 +194,38 @@ export const Prima = () => {
       } 
    }, [note, diffG, diffD, diffA, diffE]);
 
+   const pointerRef = useRef();
+   const originRef = useRef();
+
+   
+
+   const isInRange = () => {
+      if (pointerRef.current && originRef.current) {
+         const pointer = pointerRef.current.getBoundingClientRect();
+         const origin = originRef.current.getBoundingClientRect();
+
+         return (
+            ((pointer.left + 1.5) < origin.left) && ((pointer.right - 1.5) > origin.right)
+         )
+      }
+      return false;
+   }
+
+
+   boolzhan = isInRange();
+
 
    return (
       <>
-         <div className="dock-wrapper">
-               {/* <div className="dock"> */}
-            <ul>
-               <li>
-                  <Link to="/qobyz">
-                     <span>Қылқобыз</span>
-                     <img src="qyl-icons.png" alt="" />
-                  </Link>
-               </li>
-               <li>
-                  <Link to="/">
-                     <span>Домбыра</span>
-                     <img src="dombyra-icons.png" alt="" />
-                  </Link>
-               </li>
-            </ul>
-               {/* </div>   */}
-         </div>
-
+         <Dock/>
 
          <div className="container pr">
             <div className="back">
                <Waves/>
             </div>
             <div className="area">
-               <div className={`origin${lineColorClass}`}></div>
-               <div className="pointer" style={{ left: position }}></div>
+               <div ref={originRef} className={`origin ${ boolzhan && ' theAnswer'}`}></div>
+               <div ref={pointerRef} className="pointer" style={{ left: position }}></div>
             </div>
             <div className="main">
                {/* <div className="left"> */}

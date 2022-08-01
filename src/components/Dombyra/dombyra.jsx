@@ -1,5 +1,5 @@
 import { PitchDetector } from "pitchy";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import './style.css';
 
 import { Waves } from "../svg/waves";
@@ -8,9 +8,10 @@ import { Dock } from "../Dock/dock"
 // import { useWindowSize } from "../../hooks/useWindowsSize"
 
 
-let position = "30%";
+// let position = "30%";
+let position = "calc(50% - 3px)";
 let global = 100;
-let lineColorClass = "";
+let lineColorClass = "theAnswer";
 
 let minClarityPercent = 95;
 let [minPitch, maxPitch] = [60, 10000];
@@ -28,20 +29,20 @@ const playAudio = async () => {
    }
 }
 
-const changeLineColor = async () => {
+// const changeLineColor = async () => {
+//    try {
+//       await setTimeout(() => {
+//          lineColorClass = "theAnswer";
+//       }, 2000);
+//    } catch (err) {
+//       console.log("error: " + err);
+//    }
    
-   try {
-      await setTimeout(() => {
-         lineColorClass = " theAnswer";
-      }, 2000);
-   } catch (err) {
-      console.log("error: " + err);
-   }
-   
-}
+// }
+let c = 0;
+let boolzhan = true;
 
 export const Dombyra = () => {
-
    // const {width, height} = useWindowSize();
 
    // console.log(height)
@@ -55,6 +56,8 @@ export const Dombyra = () => {
    const [diffD, setDiffD] = useState(0);
 
    
+
+   console.log(boolzhan)
    function updatePitch(analyserNode, detector, input, sampleRate) {
       analyserNode.getFloatTimeDomainData(input);
       const [pitch, clarity] = detector.findPitch(input, sampleRate);
@@ -70,14 +73,16 @@ export const Dombyra = () => {
             setPitch(frq);
             setDiffG(frq - 195.9977);
             setDiffD(frq - 146.8324);
+            // setDiffD(frq - 146);
             setClarity(Math.round(clarity * 100));
             global = frq;
          } else {
-            console.log("difference is too much");
+            // console.log("difference is too much");
          }
       }
 
-      window.setTimeout(() => updatePitch(analyserNode, detector, input, sampleRate), 100);
+      window.setTimeout(() => updatePitch(analyserNode, detector, input, sampleRate), 150);
+      
    }
 
    useEffect(() => {
@@ -101,30 +106,34 @@ export const Dombyra = () => {
    let dColorClass = (note === "D") ? " green" : "";
    let gColorClass = (note === "G") ? " green" : "";
 
+   
 
    useEffect(() => {
+      let timeout;
+      
       if (note == "G" && diffG) {
          // console.log("in G")
          // console.log(diffG)
          const absDiff = Math.abs(diffG);
          // console.log("G[ " + absDiff + " ]")
          if (absDiff <= 0.2) {
-            console.log("in G exact")
+            // console.log("in G exact")
             position = 'calc(50% - 3px)';
-            changeLineColor();
-            playAudio();
-            lineColorClass = "";
+
+            
+            if (boolzhan) {playAudio();}
+
          } else if (diffG < -0.2 && diffG > nthrshld) {
-            console.log("in G near LESS")
+            // console.log("in G near LESS")
             position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
          } else if (diffG > 0.2 && diffG < threshold) {
-            console.log("in G near MORE")
+            // console.log("in G near MORE")
             position = `calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`;
          } else if (diffG <= nthrshld) {
-            console.log("in G LESS")
+            // console.log("in G LESS")
             position = `calc(50% - 3px - 10px - ${ parseInt(absDiff, 0) }px)`;
          } else if (diffG >= threshold) {
-            console.log("in G MORE")
+            // console.log("in G MORE")
             position = `calc(50% - 3px + 10px + ${ parseInt(absDiff, 0) }px)`;
          }
       } 
@@ -134,39 +143,88 @@ export const Dombyra = () => {
          const absDiff = Math.abs(diffD);
          // console.log("D[ " + absDiff + " ]")
          if (absDiff <= 0.2) {
-            console.log("in D exact")
+            // console.log("in D exact")
             position = 'calc(50% - 3px)';
-            changeLineColor();
-            playAudio();
-            lineColorClass = "";
+            // changeLineColor();
+            if (boolzhan) {playAudio();}
+         
+            // clearTimeout(timer);
+            
+            // lineColorClass = "";
          } else if (diffD < -0.2 && diffD > nthrshld) {
-            console.log("in D near LESS")
+            // console.log("in D near LESS")
             position = `calc(50% - 3px - 2px - ${ parseInt(absDiff, 0) }px)`;
          } else if (diffD > 0.2 && diffD < threshold) {
-            console.log("in D near MORE")
+            // console.log("in D near MORE")
             position = `calc(50% - 3px + 2px + ${ parseInt(absDiff, 0) }px)`;
          }else if (diffD <= nthrshld) {
-            console.log("in D LESS")
+            // console.log("in D LESS")
             position = `calc(50% - 3px - 8px - ${ parseInt(absDiff, 0) }px)`;
          } else if (diffD >= threshold) {
-            console.log("in D MORE")
+            // console.log("in D MORE")
             position = `calc(50% - 3px + 8px + ${ parseInt(absDiff, 0) }px)`;
          }
+         
       }
 
    }, [note, diffG, diffD]);
+
+
+   const pointerRef = useRef();
+   const originRef = useRef();
+
+   
+
+   const isInRange = () => {
+      if (pointerRef.current && originRef.current) {
+         const pointer = pointerRef.current.getBoundingClientRect();
+         const origin = originRef.current.getBoundingClientRect();
+
+         // return ((pointer.left + 3) == (origin.left + 1));
+
+         return (
+            ((pointer.left + 1.5) < origin.left) && ((pointer.right - 1.5) > origin.right)
+         )
+
+         // return (
+         //    (pointer.right - 2) >= origin.left && (pointer.left + 2) <= origin.right
+         // )
+         // return !(
+         //    pointer.top > origin.bottom ||
+         //    pointer.right < origin.left ||
+         //    pointer.bottom < origin.top ||
+         //    pointer.left > origin.right)
+
+      }
+      return false;
+   }
+
+
+   boolzhan = isInRange();
+
+   
+   // if (boolzhan && (c == 0)) {
+   //    c++;
+   //    playAudio();
+   // } else {
+   //    c = 0;
+   // }
+
+   // if (boolzhan) playAudio();
+   // boolzhan = false;
+   // history = boolzhan;
 
    return (
       <>
          <Dock/>
 
-         <div className="container">
+         <div className="container" id="asdlaldf">
             <div className="back">
                <Waves/>
             </div>
             <div className="area">
-               <div className={`origin${lineColorClass}`}></div>
-               <div className="pointer" style={{ left: position }}></div>
+               <div ref={originRef} className={`origin ${ boolzhan && ' theAnswer'}`}></div>
+               <div ref={pointerRef} className="pointer" style={{ left: position }}></div>
             </div>
             <div className="main">
                
