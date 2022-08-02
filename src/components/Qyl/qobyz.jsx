@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Waves } from "../svg/waves";
 import './style.css';
 import { Dock } from "../Dock/dock";
+import { BackWaves } from "../BackWaves/back-waves";
 
 
 let position = "30%";
@@ -167,9 +168,7 @@ export const Qobyz = () => {
          <Dock/>
    
          <div className="container">
-            <div className="back">
-               <Waves/>
-            </div>
+            <BackWaves/>
             <div className="area">
                <div ref={originRef} className={`origin ${ boolzhan && ' theAnswer'}`}></div>
                <div ref={pointerRef} className="pointer" style={{ left: position }}></div>

@@ -4,6 +4,7 @@ import './style.css';
 
 import { Waves } from "../svg/waves";
 import { Dock } from "../Dock/dock"
+import { BackWaves } from "../BackWaves/back-waves";
 
 // import { useWindowSize } from "../../hooks/useWindowsSize"
 
@@ -153,16 +154,16 @@ export const Dombyra = () => {
             // lineColorClass = "";
          } else if (diffD < -0.2 && diffD > nthrshld) {
             // console.log("in D near LESS")
-            position = `calc(50% - 3px - 2px - ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px - ${ parseInt(absDiff, 0) }px)`;
          } else if (diffD > 0.2 && diffD < threshold) {
             // console.log("in D near MORE")
-            position = `calc(50% - 3px + 2px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + ${ parseInt(absDiff, 0) }px)`;
          }else if (diffD <= nthrshld) {
             // console.log("in D LESS")
-            position = `calc(50% - 3px - 8px - ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px - ${ parseInt(absDiff, 0) }px)`;
          } else if (diffD >= threshold) {
             // console.log("in D MORE")
-            position = `calc(50% - 3px + 8px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + ${ parseInt(absDiff, 0) }px)`;
          }
          
       }
@@ -219,9 +220,7 @@ export const Dombyra = () => {
          <Dock/>
 
          <div className="container" id="asdlaldf">
-            <div className="back">
-               <Waves/>
-            </div>
+            <BackWaves/>
             <div className="area">
                <div ref={originRef} className={`origin ${ boolzhan && ' theAnswer'}`}></div>
                <div ref={pointerRef} className="pointer" style={{ left: position }}></div>

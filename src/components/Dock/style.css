@@ -5,10 +5,11 @@
    align-items: center;
    /* margin: 0 auto; */
    position: absolute;
-   right: 0.8vw;
+   right: calc(0.8vw + 7px);
    bottom: 20vh;
    padding: 3px;
-   width: 10vh;
+   /* width: 10vh; */
+   width: 78.5px;
    height: 220px;
    background-color: rgba(45, 32, 81, 0.6);
    border-radius: 10px 10px 10px 10px;
@@ -60,11 +61,12 @@
 
 
       width: 260px;
-      height: 10vh;
+      /* height: 10vh; */
+      height: 78.5px;
       padding: 3px;
       left: 0;
       right: 0;
-      bottom: 0.5vw;
+      bottom: 0.5vh;
       margin: auto;
       text-align: center;
       z-index: 999;

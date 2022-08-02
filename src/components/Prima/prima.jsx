@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Waves } from "../svg/waves";
 import './style.css';
 import { Dock } from "../Dock/dock";
+import { BackWaves } from "../BackWaves/back-waves";
 
 
 let position = "30%";
@@ -51,13 +52,23 @@ export const Prima = () => {
          const frq = Math.round(pitch * 10) / 10;
          // console.log((Math.abs(frq - global)));
 
-         if (Math.abs(frq - global) < 200) {
+
             
+            
+         if ((note === "E") || (note === "A")){
+            console.log("EEE")
+            setPitch(frq);
+
+            setDiffE(frq - 659.2551);
+            setDiffA(frq - 440);
+            setClarity(Math.round(clarity * 100));
+
+         } else if (Math.abs(frq - global) < 200) {
             setPitch(frq);
             setDiffG(frq - 195.9977);
             setDiffD(frq - 293.6648);
-            setDiffA(frq - 440);
-            setDiffE(frq - 659.2551);
+            
+            
             setClarity(Math.round(clarity * 100));
             global = frq;
          } else {
@@ -220,9 +231,7 @@ export const Prima = () => {
          <Dock/>
 
          <div className="container pr">
-            <div className="back">
-               <Waves/>
-            </div>
+            <BackWaves/>
             <div className="area">
                <div ref={originRef} className={`origin ${ boolzhan && ' theAnswer'}`}></div>
                <div ref={pointerRef} className="pointer" style={{ left: position }}></div>
