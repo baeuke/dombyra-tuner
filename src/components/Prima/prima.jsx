@@ -7,9 +7,9 @@ import { Dock } from "../Dock/dock";
 import { BackWaves } from "../BackWaves/back-waves";
 
 
-let position = "30%";
+let position = "calc(50% - 3px)";
 let global = 100;
-let lineColorClass = "";
+
 
 let minClarityPercent = 95;
 let [minPitch, maxPitch] = [60, 10000];
@@ -28,6 +28,8 @@ const playAudio = async () => {
 }
 
 let boolzhan = true;
+let passesFilter = false;
+let c = 0;
 
 export const Prima = () => {
 
@@ -41,7 +43,51 @@ export const Prima = () => {
    const [diffE, setDiffE] = useState(0);
    const [diffA, setDiffA] = useState(0);
 
+
+   const prevNote = usePrevious(note);
+
    
+
+   // check if note changed to a too higher freq note, so that the filter is passed.
+
+   useEffect(() => {
+
+      if ((prevNote === 'G' || prevNote === 'E' || prevNote === 'D') 
+         && (note === 'A')) {
+         
+         global = 440;
+      } else if ((prevNote === 'G' || prevNote === 'D' || prevNote === 'A') 
+         && (note === 'E')) {
+
+         global = 660;
+      } else if ((prevNote === 'E' || prevNote === 'A') 
+         && (note === 'D')) {
+
+         global = 293;
+      } else if ((prevNote === 'E' || prevNote === 'A') 
+         && (note === 'G')) {
+
+         global = 196;
+      } 
+   }, [note]);
+   
+   function usePrevious(value) {
+      // The ref object is a generic container whose current property is mutable ...
+      // ... and can hold any value, similar to an instance property on a class
+      const ref = useRef();
+
+      // Store current value in ref
+      useEffect(() => {
+         ref.current = value;
+      }, [value]); // Only re-run if value changes
+
+      // Return previous value (happens before update in useEffect above)
+      return ref.current;
+   }
+
+   
+
+
    function updatePitch(analyserNode, detector, input, sampleRate) {
       analyserNode.getFloatTimeDomainData(input);
       const [pitch, clarity] = detector.findPitch(input, sampleRate);
@@ -50,30 +96,25 @@ export const Prima = () => {
       
       if (matchesConditions) {
          const frq = Math.round(pitch * 10) / 10;
-         // console.log((Math.abs(frq - global)));
 
-
+         if (Math.abs(frq - global) < 200) {
             
-            
-         if ((note === "E") || (note === "A")){
-            console.log("EEE")
-            setPitch(frq);
-
-            setDiffE(frq - 659.2551);
-            setDiffA(frq - 440);
-            setClarity(Math.round(clarity * 100));
-
-         } else if (Math.abs(frq - global) < 200) {
             setPitch(frq);
             setDiffG(frq - 195.9977);
             setDiffD(frq - 293.6648);
-            
-            
+            setDiffA(frq - 440);
+            setDiffE(frq - 659.2551);
             setClarity(Math.round(clarity * 100));
             global = frq;
+
          } else {
             console.log("difference is too much");
          }
+         
+         // else if note == G and frq <100 => "Too low!"
+         
+
+
       }
 
       window.setTimeout(() => updatePitch(analyserNode, detector, input, sampleRate), 100);
@@ -102,7 +143,7 @@ export const Prima = () => {
    let aColorClass = (note === "A") ? " green" : "";
    let eColorClass = (note === "E") ? " green" : "";
 
-
+   
    useEffect(() => {
       if (note == "G" && diffG) {
          // console.log("in G")
@@ -203,6 +244,7 @@ export const Prima = () => {
             position = `calc(50% - 3px + 10px + ${ parseInt(absDiff, 0) }px)`;
          }
       } 
+
    }, [note, diffG, diffD, diffA, diffE]);
 
    const pointerRef = useRef();

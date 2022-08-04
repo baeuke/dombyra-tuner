@@ -12,7 +12,7 @@ import { BackWaves } from "../BackWaves/back-waves";
 // let position = "30%";
 let position = "calc(50% - 3px)";
 let global = 100;
-let lineColorClass = "theAnswer";
+
 
 let minClarityPercent = 95;
 let [minPitch, maxPitch] = [60, 10000];
@@ -30,16 +30,6 @@ const playAudio = async () => {
    }
 }
 
-// const changeLineColor = async () => {
-//    try {
-//       await setTimeout(() => {
-//          lineColorClass = "theAnswer";
-//       }, 2000);
-//    } catch (err) {
-//       console.log("error: " + err);
-//    }
-   
-// }
 let c = 0;
 let boolzhan = true;
 
@@ -74,7 +64,6 @@ export const Dombyra = () => {
             setPitch(frq);
             setDiffG(frq - 195.9977);
             setDiffD(frq - 146.8324);
-            // setDiffD(frq - 146);
             setClarity(Math.round(clarity * 100));
             global = frq;
          } else {
@@ -82,14 +71,21 @@ export const Dombyra = () => {
          }
       }
 
-      window.setTimeout(() => updatePitch(analyserNode, detector, input, sampleRate), 150);
-      
+      // setTimeout(() => updatePitch(analyserNode, detector, input, sampleRate), 150);
+      // return () => {
+         // console.log("RETURNED")
+         // clearTimeout(interval)
+      // }
    }
 
+
+   
+   
    useEffect(() => {
       // const audioContext = new window.AudioContext();
       // const analyserNode = audioContext.createAnalyser();
-   
+      let interval;
+
       navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
          const audioContext = new window.AudioContext();
          const analyserNode = audioContext.createAnalyser();
@@ -99,8 +95,16 @@ export const Dombyra = () => {
 
          // global = detector.findPitch(input, audioContext.sampleRate)[0];
 
-         updatePitch(analyserNode, detector, input, audioContext.sampleRate);
+         interval = setInterval(() => { 
+            updatePitch(analyserNode, detector, input, audioContext.sampleRate)
+         }, 150);
       });
+
+      return () => {
+         console.log("RETURNED");
+         clearTimeout(interval);
+      }
+      
    }, []);
    
 
@@ -226,8 +230,7 @@ export const Dombyra = () => {
                <div ref={pointerRef} className="pointer" style={{ left: position }}></div>
             </div>
             <div className="main">
-               
-               {/* <div className="left"> */}
+
                <div className="inmain">
                   <button
                      className={`btn d-note${dColorClass}`} 

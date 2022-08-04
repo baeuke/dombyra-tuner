@@ -7,7 +7,7 @@ import { Dock } from "../Dock/dock";
 import { BackWaves } from "../BackWaves/back-waves";
 
 
-let position = "30%";
+let position = "calc(50% - 3px)";
 let global = 100;
 let lineColorClass = "";
 
