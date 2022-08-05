@@ -48,7 +48,6 @@ export const Dombyra = () => {
    const[ position, setPosition] = useState("calc(50% - 3px)");
    
 
-   console.log(boolzhan)
    function updatePitch(analyserNode, detector, input, sampleRate) {
       analyserNode.getFloatTimeDomainData(input);
       const [pitch, clarity] = detector.findPitch(input, sampleRate);
@@ -206,6 +205,7 @@ export const Dombyra = () => {
 
 
    boolzhan = isInRange();
+   console.log({position});
 
    
    // if (boolzhan && (c == 0)) {
