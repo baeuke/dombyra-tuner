@@ -48,7 +48,7 @@ export const Dombyra = () => {
    const[ position, setPosition] = useState("calc(50% - 3px)");
    
 
-   function updatePitch(analyserNode, detector, input, sampleRate) {
+   const updatePitch = (analyserNode, detector, input, sampleRate) => {
       analyserNode.getFloatTimeDomainData(input);
       const [pitch, clarity] = detector.findPitch(input, sampleRate);
 
