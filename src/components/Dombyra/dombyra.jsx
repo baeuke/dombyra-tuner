@@ -130,16 +130,16 @@ export const Dombyra = () => {
 
          } else if (diffG < -0.2 && diffG > nthrshld) {
             // console.log("in G near LESS")
-            position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px - ${ parseInt(absDiff/2, 0) }px)`;
          } else if (diffG > 0.2 && diffG < threshold) {
             // console.log("in G near MORE")
-            position = `calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + ${ parseInt(absDiff/2, 0) }px)`;
          } else if (diffG <= nthrshld) {
             // console.log("in G LESS")
-            position = `calc(50% - 3px - 10px - ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px - ${ parseInt(absDiff/2, 0) }px)`;
          } else if (diffG >= threshold) {
             // console.log("in G MORE")
-            position = `calc(50% - 3px + 10px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + ${ parseInt(absDiff/2, 0) }px)`;
          }
       } 
       if (note == "D" && diffD) {
@@ -158,16 +158,16 @@ export const Dombyra = () => {
             // lineColorClass = "";
          } else if (diffD < -0.2 && diffD > nthrshld) {
             // console.log("in D near LESS")
-            position = `calc(50% - 3px - ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px - ${ parseInt(absDiff/2, 0) }px)`;
          } else if (diffD > 0.2 && diffD < threshold) {
             // console.log("in D near MORE")
-            position = `calc(50% - 3px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + ${ parseInt(absDiff/2, 0) }px)`;
          }else if (diffD <= nthrshld) {
             // console.log("in D LESS")
-            position = `calc(50% - 3px - ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px - ${ parseInt(absDiff/2, 0) }px)`;
          } else if (diffD >= threshold) {
             // console.log("in D MORE")
-            position = `calc(50% - 3px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + ${ parseInt(absDiff/2, 0) }px)`;
          }
          
       }
