@@ -31,3 +31,10 @@
    grid-template-rows: 64px 1fr;
    grid-template-columns: 64px 300px 64px;
 }
+
+@media screen and (max-width: 500px) {
+   .inmain {
+      grid-template-columns: 64px 230px 64px;
+      bottom: -39px;
+   }  
+}

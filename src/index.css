@@ -197,3 +197,15 @@ body {
    background-color: #ebf297;
    transition: all 0.3s step-end;
 }
+
+
+@media screen and (max-width: 500px) {
+
+
+   .btn {
+      height: 50px;
+      width: 50px;
+      font-size: calc(0.35714285714 * 50px);
+      font-weight: 700;
+   }
+}

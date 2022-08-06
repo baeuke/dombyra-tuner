@@ -230,7 +230,7 @@ export const Dombyra = () => {
                <div ref={pointerRef} className="pointer" style={{ left: position }}></div>
             </div>
             <div className="main">
-
+      
                <div className="inmain">
                   <button
                      className={`btn d-note${dColorClass}`} 
