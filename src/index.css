@@ -32,6 +32,7 @@ body {
 
 .container {
    height: 100vh;
+   height: -webkit-fill-available;
    width: 100vw;
    display: grid;
    /* background: url('../public/waves-01.svg') no-repeat; */
