@@ -13,6 +13,7 @@
    height: 220px;
    background-color: rgba(45, 32, 81, 0.6);
    border-radius: 10px 10px 10px 10px;
+   z-index: 999;
    /* transition: all 1s linear; */
 }
 
