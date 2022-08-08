@@ -35,6 +35,7 @@ body {
    /* height: -webkit-fill-available; */
    width: 100vw;
    display: grid;
+   position: relative;
    /* background: url('../public/waves-01.svg') no-repeat; */
    grid-template: 1fr 1.5fr / 0.5fr 2fr 0.5fr; /*  rows / columns  */
 }

@@ -221,10 +221,11 @@ export const Dombyra = () => {
 
    return (
       <>
-         <Dock/>
+         
 
          <div className="container" id="asdlaldf">
             <BackWaves/>
+            <Dock/>
             <div className="area">
                <div ref={originRef} className={`origin ${ boolzhan && ' theAnswer'}`}></div>
                <div ref={pointerRef} className="pointer" style={{ left: position }}></div>
