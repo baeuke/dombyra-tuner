@@ -205,7 +205,7 @@ body {
 }
 
 
-@media screen and (max-width: 500px) {
+/* @media screen and (max-width: 500px) {
 
 
    .btn {
@@ -214,4 +214,4 @@ body {
       font-size: calc(0.35714285714 * 50px);
       font-weight: 700;
    }
-}
+} */
