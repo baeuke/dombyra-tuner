@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 
+:root {
+   --vh: 6.63px;
+}
 
 body {
    margin: 0;
@@ -32,6 +35,7 @@ body {
 
 .container {
    height: 100vh;
+   height: calc(var(--vh, 1vh) * 100);
    /* height: -webkit-fill-available; */
    width: 100vw;
    display: grid;

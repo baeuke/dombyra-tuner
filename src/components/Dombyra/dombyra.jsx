@@ -16,6 +16,8 @@ let global = 100;
 
 let minClarityPercent = 95;
 let [minPitch, maxPitch] = [60, 10000];
+const absThr = 0.5;
+const nAbsThr = -1*absThr;
 const threshold = 1;
 const nthrshld = -1*threshold;
 
@@ -120,25 +122,25 @@ export const Dombyra = () => {
          // console.log(diffG)
          const absDiff = Math.abs(diffG);
          // console.log("G[ " + absDiff + " ]")
-         if (absDiff <= 0.2) {
+         if (absDiff <= absThr) {
             // console.log("in G exact")
             setPosition('calc(50% - 3px)');
 
             
             if (boolzhan) {playAudio();}
 
-         } else if (diffG < -0.2 && diffG > nthrshld) {
+         } else if (diffG < nAbsThr && diffG > nthrshld) {
             // console.log("in G near LESS")
-            setPosition(`calc(50% - 3px - ${ parseInt(absDiff/2, 0) }px)`);
-         } else if (diffG > 0.2 && diffG < threshold) {
+            setPosition(`calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`);
+         } else if (diffG > absThr && diffG < threshold) {
             // console.log("in G near MORE")
-            setPosition(`calc(50% - 3px + ${ parseInt(absDiff/2, 0) }px)`);
+            setPosition(`calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`);
          } else if (diffG <= nthrshld) {
             // console.log("in G LESS")
-            setPosition(`calc(50% - 3px - ${ parseInt(absDiff/2, 0) }px)`);
+            setPosition(`calc(50% - 3px - 10px - ${ parseInt(absDiff, 0) }px)`);
          } else if (diffG >= threshold) {
             // console.log("in G MORE")
-            setPosition(`calc(50% - 3px + ${ parseInt(absDiff/2, 0) }px)`);
+            setPosition(`calc(50% - 3px + 10px + ${ parseInt(absDiff, 0) }px)`);
          }
       } 
       if (note == "D" && diffD) {
@@ -146,7 +148,7 @@ export const Dombyra = () => {
          // console.log(diffD)
          const absDiff = Math.abs(diffD);
          // console.log("D[ " + absDiff + " ]")
-         if (absDiff <= 0.2) {
+         if (absDiff <= absThr) {
             // console.log("in D exact")
             setPosition('calc(50% - 3px)');
             // changeLineColor();
@@ -155,18 +157,18 @@ export const Dombyra = () => {
             // clearTimeout(timer);
             
             // lineColorClass = "";
-         } else if (diffD < -0.2 && diffD > nthrshld) {
+         } else if (diffD < nAbsThr && diffD > nthrshld) {
             // console.log("in D near LESS")
-            setPosition(`calc(50% - 3px - ${ parseInt(absDiff/2, 0) }px)`);
-         } else if (diffD > 0.2 && diffD < threshold) {
+            setPosition(`calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`);
+         } else if (diffD > absThr && diffD < threshold) {
             // console.log("in D near MORE")
-            setPosition(`calc(50% - 3px + ${ parseInt(absDiff/2, 0) }px)`);
+            setPosition(`calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`);
          }else if (diffD <= nthrshld) {
             // console.log("in D LESS")
-            setPosition(`calc(50% - 3px - ${ parseInt(absDiff/2, 0) }px)`);
+            setPosition(`calc(50% - 3px - 10px - ${ parseInt(absDiff, 0) }px)`);
          } else if (diffD >= threshold) {
             // console.log("in D MORE")
-            setPosition(`calc(50% - 3px + ${ parseInt(absDiff/2, 0) }px)`);
+            setPosition(`calc(50% - 3px + 10px + ${ parseInt(absDiff, 0) }px)`);
          }
          
       }

@@ -13,6 +13,9 @@ let global = 100;
 
 let minClarityPercent = 95;
 let [minPitch, maxPitch] = [60, 10000];
+
+const absThr = 0.5;
+const nAbsThr = -1*absThr;
 const threshold = 1;
 const nthrshld = -1*threshold;
 
@@ -150,15 +153,15 @@ export const Prima = () => {
          // console.log(diffG)
          const absDiff = Math.abs(diffG);
          // console.log("G[ " + absDiff + " ]")
-         if (absDiff <= 0.2) {
+         if (absDiff <= absThr) {
 
             position = 'calc(50% - 3px)';
             if (boolzhan) {playAudio();}
 
-         } else if (diffG < -0.2 && diffG > nthrshld) {
+         } else if (diffG < nAbsThr && diffG > nthrshld) {
             console.log("in G near LESS")
             position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
-         } else if (diffG > 0.2 && diffG < threshold) {
+         } else if (diffG > absThr && diffG < threshold) {
             console.log("in G near MORE")
             position = `calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`;
          } else if (diffG <= nthrshld) {
@@ -175,23 +178,23 @@ export const Prima = () => {
          // console.log(diffD)
          const absDiff = Math.abs(diffD);
          // console.log("D[ " + absDiff + " ]")
-         if (absDiff <= 0.2) {
+         if (absDiff <= absThr) {
             
             position = 'calc(50% - 3px)';
             if (boolzhan) {playAudio();}
 
-         } else if (diffD < -0.2 && diffD > nthrshld) {
+         } else if (diffD < nAbsThr && diffD > nthrshld) {
             console.log("in D near LESS")
-            position = `calc(50% - 3px - 2px - ${ parseInt(absDiff, 0) }px)`;
-         } else if (diffD > 0.2 && diffD < threshold) {
+            position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
+         } else if (diffD > absThr && diffD < threshold) {
             console.log("in D near MORE")
-            position = `calc(50% - 3px + 2px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`;
          }else if (diffD <= nthrshld) {
             console.log("in D LESS")
-            position = `calc(50% - 3px - 8px - ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px - 10px - ${ parseInt(absDiff, 0) }px)`;
          } else if (diffD >= threshold) {
             console.log("in D MORE")
-            position = `calc(50% - 3px + 8px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + 10px + ${ parseInt(absDiff, 0) }px)`;
          }
       }
 
@@ -200,23 +203,23 @@ export const Prima = () => {
          // console.log(diffD)
          const absDiff = Math.abs(diffA);
          // console.log("D[ " + absDiff + " ]")
-         if (absDiff <= 0.2) {
+         if (absDiff <= absThr) {
 
             position = 'calc(50% - 3px)';
             if (boolzhan) {playAudio();}
 
-         } else if (diffA < -0.2 && diffA > nthrshld) {
+         } else if (diffA < nAbsThr && diffA > nthrshld) {
          
-            position = `calc(50% - 3px - 2px - ${ parseInt(absDiff, 0) }px)`;
-         } else if (diffA > 0.2 && diffA < threshold) {
+            position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
+         } else if (diffA > absThr && diffA < threshold) {
          
-            position = `calc(50% - 3px + 2px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`;
          }else if (diffA <= nthrshld) {
          
-            position = `calc(50% - 3px - 8px - ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px - 10px - ${ parseInt(absDiff, 0) }px)`;
          } else if (diffA >= threshold) {
             
-            position = `calc(50% - 3px + 8px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + 10px + ${ parseInt(absDiff, 0) }px)`;
          }
       }
 
@@ -225,15 +228,15 @@ export const Prima = () => {
          // console.log(diffG)
          const absDiff = Math.abs(diffE);
          // console.log("G[ " + absDiff + " ]")
-         if (absDiff <= 0.2) {
+         if (absDiff <= absThr) {
    
             position = 'calc(50% - 3px)';
             if (boolzhan) {playAudio();}
 
-         } else if (diffE < -0.2 && diffE > nthrshld) {
+         } else if (diffE < nAbsThr && diffE > nthrshld) {
    
             position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
-         } else if (diffE > 0.2 && diffE < threshold) {
+         } else if (diffE > absThr && diffE < threshold) {
          
             position = `calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`;
          } else if (diffE <= nthrshld) {

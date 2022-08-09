@@ -129,16 +129,16 @@ export const Qobyz = () => {
 
          } else if (diffD < -0.2 && diffD > nthrshld) {
             console.log("in D near LESS")
-            position = `calc(50% - 3px - 2px - ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
          } else if (diffD > 0.2 && diffD < threshold) {
             console.log("in D near MORE")
-            position = `calc(50% - 3px + 2px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`;
          }else if (diffD <= nthrshld) {
             console.log("in D LESS")
-            position = `calc(50% - 3px - 8px - ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px - 10px - ${ parseInt(absDiff, 0) }px)`;
          } else if (diffD >= threshold) {
             console.log("in D MORE")
-            position = `calc(50% - 3px + 8px + ${ parseInt(absDiff, 0) }px)`;
+            position = `calc(50% - 3px + 10px + ${ parseInt(absDiff, 0) }px)`;
          }
       }
 
