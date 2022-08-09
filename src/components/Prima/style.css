@@ -10,6 +10,11 @@
    z-index: 2;
 } */
 
+.pr {
+   background-color: #A9C9FF;
+   background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
+}
+
 .inmain-prima {
    grid-template-rows: 64px 64px 1fr;
    grid-template-columns: 64px 300px 64px;
@@ -61,3 +66,22 @@
 
 
 
+
+.main {
+   grid-row: 2/3;
+   grid-column: 2/3;
+   width: 100%;
+   height: 100%;
+   position: relative;
+   /* z-index: 6; */
+   /* width: 100%;
+   height:100%; */
+}
+
+
+@media screen and (max-width: 500px) {
+.inmain-prima {
+   grid-template-rows: 40px 40px 1fr;
+   grid-template-columns: 40px 200px 40px;
+}
+}

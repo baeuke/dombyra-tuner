@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 
 :root {
-   --vh: 6.63px;
+   /* mazimum mobile width: */
+   --mw: 500px;
+
+   --minimw: 400px;
+
+   --btnmax: 70px;
+
+   --btnmin: 50px;
+
+   --imgdiv:
 }
 
 body {
    margin: 0;
    padding: 0;
    font-family: 'Comfortaa', cursive;
-   /* background-color: #8EC5FC;
-   background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); */
-
-   background-color: #8BC6EC;
-   background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
-   
-   /* top:  */
-   /* background-color: #A9C9FF;
-   background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%); */
 
    background: #7F7FD5;
       /* fallback for old browsers */
@@ -35,7 +35,7 @@ body {
 
 .container {
    height: 100vh;
-   height: calc(var(--vh, 1vh) * 100);
+   /* height: calc(var(--vh, 1vh) * 100); */
    /* height: -webkit-fill-available; */
    width: 100vw;
    display: grid;
@@ -106,6 +106,7 @@ body {
    width: 100%;
    height: 100%;
    position: relative;
+   top: -10%;
    /* z-index: 6; */
    /* width: 100%;
    height:100%; */
@@ -205,7 +206,18 @@ body {
 }
 
 
-/* @media screen and (max-width: 500px) {
+.prefooter {
+   position: absolute;
+   width: 100vw;
+   height: 40px;
+   padding: 10px 0;
+   background-color: rgb(45, 32, 81);
+   bottom: 0;
+
+}
+
+
+@media screen and (max-width: 500px) {
 
 
    .btn {
@@ -214,4 +226,4 @@ body {
       font-size: calc(0.35714285714 * 50px);
       font-weight: 700;
    }
-} */
+}

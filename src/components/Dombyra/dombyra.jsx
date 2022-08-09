@@ -252,8 +252,9 @@ export const Dombyra = () => {
                   </div>
                </div>
                   
-               
             </div>
+
+
          </div>
          <div className="numbers">
             <div className="pitch">{pitch}</div>
