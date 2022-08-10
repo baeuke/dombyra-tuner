@@ -1,7 +1,5 @@
 import { useEffect, useState, useRef } from "react";
 import { PitchDetector } from "pitchy";
-import { Link } from "react-router-dom";
-import { Waves } from "../svg/waves";
 import './style.css';
 import { Dock } from "../Dock/dock";
 import { BackWaves } from "../BackWaves/back-waves";
