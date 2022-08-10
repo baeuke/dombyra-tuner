@@ -2,7 +2,6 @@ import { PitchDetector } from "pitchy";
 import { useEffect, useState, useRef } from "react";
 import './style.css';
 
-import { Waves } from "../svg/waves";
 import { Dock } from "../Dock/dock"
 import { BackWaves } from "../BackWaves/back-waves";
 
