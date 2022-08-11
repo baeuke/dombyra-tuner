@@ -45,3 +45,11 @@
    /* width: 100%;
    height:100%; */
 }
+
+
+@media screen and (max-width: 500px) {
+   .inmain-qyl {
+      grid-template-rows: 40px 40px 1fr;
+      grid-template-columns: 40px 250px 40px;
+   }
+}

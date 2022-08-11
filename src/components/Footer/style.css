@@ -8,10 +8,13 @@
    flex-direction: column;
    color: rgba(255, 255, 255, 0.8);
    justify-content: space-evenly;
+   z-index: 999;
    align-items: center;
+   position: relative;
 }
 
 .footer a {
    text-decoration: none;
    color: rgba(255, 255, 255, 0.8);
+
 }

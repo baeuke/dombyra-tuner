@@ -253,6 +253,9 @@ export const Dombyra = () => {
                   
             </div>
 
+            {/* <div className="prefooter">
+
+            </div> */}
 
          </div>
          <div className="numbers">
