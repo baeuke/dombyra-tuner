@@ -226,29 +226,23 @@ export const Qobyz = () => {
                <div ref={originRef} className={`origin ${ boolzhan && ' theAnswer'}`}></div>
                <div ref={pointerRef} className="pointer" style={{ left: position }}></div>
             </div>
-            <div className="main">
-               {/* <div className="left"> */}
-               <div className="inmain-qyl">
-                  <button
-                     className={`btn d-note-qyl${dColorClass}`} 
-                     onClick={() => {
-                        setNote("D");
-                     }}
-                  >ре</button>
+            <div className="parent-qobyz">
+               <button
+                  className={`btn d-note-qyl${dColorClass}`} 
+                  onClick={() => {
+                     setNote("D");
+                  }}
+               >ре</button>
 
+            
+               <button
+                  className={`btn a-note-qyl${aColorClass}`} 
+                  onClick={() => {
+                     setNote("A");
+                  }}
+               >ля</button>
                
-                  <button
-                     className={`btn a-note-qyl${aColorClass}`} 
-                     onClick={() => {
-                        setNote("A");
-                     }}
-                  >ля</button>
-                  <div className="center">
-                     <img className="pic" src="qyl1.png" alt="dombyra pic" />
-                  </div>
-               </div>
-               
-               
+               <img className="img-qobyz" src="qyl1.png" alt="dombyra pic" />
             </div>
          </div>
          <div className="numbers">

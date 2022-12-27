@@ -86,7 +86,7 @@ body {
    width: 2px;
    bottom: 0px;
    background-color: rgb(196, 55, 4);
-   height: 80%;
+   height: 70%;
    z-index: 1;
 }
 
@@ -220,7 +220,7 @@ body {
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 570px) {
 
 
    .btn {
