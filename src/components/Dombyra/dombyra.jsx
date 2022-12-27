@@ -49,17 +49,19 @@ export const Dombyra = () => {
    const [diffD, setDiffD] = useState(0);
    const[ position, setPosition] = useState("calc(50% - 3px)");
 
+   let windowInnerWidth = 0;
+
    const handleResize = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      const currentWinInnerWidth = window.innerWidth;
+      if (windowInnerWidth === 0 || currentWinInnerWidth !== windowInnerWidth) {
+         windowInnerWidth = currentWinInnerWidth;
+         const vh = window.innerHeight * 0.01;
+         document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+      
    }
 
    handleResize();
-
-   useEffect(() => {
-      handleResize();
-   }, []);
-   
 
 
    const updatePitch = (analyserNode, detector, input, sampleRate) => {
