@@ -6,7 +6,7 @@
    left: 0;
    right: 0;
    bottom: 0;
-   border: 1px solid black;
+   /* border: 1px solid black; */
    z-index: 2;
 }
 
@@ -41,7 +41,6 @@
 
    .img-qobyz {
       width: 284px;
-
    }
 
    .a-note-qyl {
@@ -54,7 +53,6 @@
       left: unset;
       right: 12px;
    }
-
 }
 
 @media screen and (max-width: 370px) {
@@ -65,7 +63,6 @@
 
    .img-qobyz {
       width: 250px;
-
    }
 
    .a-note-qyl {
@@ -78,5 +75,4 @@
       left: unset;
       right: 6px;
    }
-
 }

@@ -128,7 +128,6 @@ export const Dombyra = () => {
    
 
    useEffect(() => {
-      let timeout;
       
       if (note == "G" && diffG) {
          // console.log("in G")
@@ -218,26 +217,12 @@ export const Dombyra = () => {
       return false;
    }
 
-
    boolzhan = isInRange();
    console.log({position});
 
-   
-   // if (boolzhan && (c == 0)) {
-   //    c++;
-   //    playAudio();
-   // } else {
-   //    c = 0;
-   // }
-
-   // if (boolzhan) playAudio();
-   // boolzhan = false;
-   // history = boolzhan;
 
    return (
       <>
-         
-
          <div className="container" id="asdlaldf">
             <BackWaves/>
             <Dock/>
@@ -245,39 +230,27 @@ export const Dombyra = () => {
                <div ref={originRef} className={`origin ${ boolzhan && ' theAnswer'}`}></div>
                <div ref={pointerRef} className="pointer" style={{ left: position }}></div>
             </div>
-            <div className="main">
-      
-               <div className="inmain">
-                  <button
-                     className={`btn d-note${dColorClass}`} 
-                     onClick={() => {
-                        setNote("D");
-                     }}
-                  >ре</button>
-                  <button
-                     className={`btn g-note${gColorClass}`} 
-                     onClick={() => {
-                        setNote("G");
-                     }}
-                  >соль</button>
-                  <div className="center">
-                     <img className="pic" src="dombyra0.png" alt="dombyra pic" />
-                  </div>
-               </div>
-                  
+            <div className="parent-dombyra">
+               <button
+                  className={`btn d-note${dColorClass}`} 
+                  onClick={() => {
+                     setNote("D");
+                  }}
+               >ре</button>
+               <button
+                  className={`btn g-note${gColorClass}`} 
+                  onClick={() => {
+                     setNote("G");
+                  }}
+               >соль</button>
+               
+               <img className="img-dombyra" src="dombyra.png" alt="img dombyra" />
             </div>
-
-            {/* <div className="prefooter">
-
-            </div> */}
-
          </div>
          <div className="numbers">
             <div className="pitch">{pitch}</div>
             <div className="clarity">{clarity}</div>
          </div>
-         
-
       </>
    );
 };

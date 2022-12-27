@@ -17,7 +17,7 @@
 
 .img-prima {
    position: absolute;
-   width: 218px;
+   width: 208px;
    height: auto;
    bottom: -2px;
    margin: auto;
@@ -28,13 +28,15 @@
 
 .d-note-prima {
    position: absolute;
-   top: 184px;
+   /* top: 184px; */
+   top: 162px;
    left: 36px;
 }
 
 .g-note-prima {
    position: absolute;
-   top: 280px;
+   /* top: 280px; */
+   top: 258px;
    left: 36px;
 }
 
@@ -57,26 +59,28 @@
    }
 
    .img-prima {
-      width: 196px;
+      width: 182px;
    }
 
    .d-note-prima {
-      top: 224px;
+      /* top: 230px; */
+      top: 210px;
       left: 26px;
    }
 
    .g-note-prima {
-      top: 302px;
+      /* top: 308px; */
+      top: 288px;
       left: 26px;
    }
 
    .a-note-prima {
-      top: 204px;
+      top: 210px;
       right: 26px;
    }
 
    .e-note-prima {
-      top: 282px;
+      top: 288px;
       right: 26px;
    }
 }
@@ -87,7 +91,7 @@
    }
 
    .img-prima {
-      width: 176px;
+      width: 168px;
    }
 
    .d-note-prima {

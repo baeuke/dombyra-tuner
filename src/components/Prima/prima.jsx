@@ -47,7 +47,18 @@ export const Prima = () => {
 
    const prevNote = usePrevious(note);
 
-   
+   let windowInnerWidth = 0;
+
+   const handleResize = () => {
+      const currentWinInnerWidth = window.innerWidth;
+      if (windowInnerWidth === 0 || currentWinInnerWidth !== windowInnerWidth) {
+         windowInnerWidth = currentWinInnerWidth;
+         const vh = window.innerHeight * 0.01;
+         document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+   }
+
+   handleResize();
 
    // check if note changed to a too higher freq note, so that the filter is passed:
    useEffect(() => {
@@ -173,7 +184,7 @@ export const Prima = () => {
 
          interval = setInterval(() => { 
             updatePitch(analyserNode, detector, input, audioContext.sampleRate)
-         }, 100);
+         }, 150); //was 100
       });
 
       return () => {
@@ -324,7 +335,7 @@ export const Prima = () => {
                <div ref={originRef} className={`origin ${ boolzhan && ' theAnswer'}`}></div>
                <div ref={pointerRef} className="pointer" style={{ left: position }}></div>
             </div>
-            
+
             <div className="parent-prima">
                <button
                   className={`btn d-note-prima${dColorClass}`} 
@@ -355,7 +366,7 @@ export const Prima = () => {
                   }}
                >ми</button>
 
-               <img className="img-prima" src="prima0.png" alt="img prima" />
+               <img className="img-prima" src="prima-qobyz.png" alt="img prima" />
             </div>
 
          </div>

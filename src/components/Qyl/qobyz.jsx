@@ -10,9 +10,12 @@ let global = 100;
 let lineColorClass = "";
 
 let minClarityPercent = 95;
-let [minPitch, maxPitch] = [60, 10000];
+const absThr = 0.5;
+const nAbsThr = -1*absThr;
 const threshold = 1;
 const nthrshld = -1*threshold;
+
+let [minPitch, maxPitch] = [60, 10000];
 
 const audio = new Audio("tuner.mp3");
 
@@ -38,9 +41,20 @@ export const Qobyz = () => {
    const [diffA, setDiffA] = useState(0);
    const [diffD, setDiffD] = useState(0);
 
+   // const handleResize = () => {
+   //    const vh = window.innerHeight * 0.01;
+   //    document.documentElement.style.setProperty('--vh', `${vh}px`);
+   // }
+
+   let windowInnerWidth = 0;
+
    const handleResize = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      const currentWinInnerWidth = window.innerWidth;
+      if (windowInnerWidth === 0 || currentWinInnerWidth !== windowInnerWidth) {
+         windowInnerWidth = currentWinInnerWidth;
+         const vh = window.innerHeight * 0.01;
+         document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
    }
 
    handleResize();
@@ -149,16 +163,16 @@ export const Qobyz = () => {
          // console.log(diffA)
          const absDiff = Math.abs(diffA);
          // console.log("G[ " + absDiff + " ]")
-         if (absDiff <= 0.2) {
+         if (absDiff <= absThr) {
 
             position = 'calc(50% - 3px)';
 
             if (boolzhan) {playAudio();}
             
-         } else if (diffA < -0.2 && diffA > nthrshld) {
+         } else if (diffA < nAbsThr && diffA > nthrshld) {
             console.log("in A near LESS")
             position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
-         } else if (diffA > 0.2 && diffA < threshold) {
+         } else if (diffA > absThr && diffA < threshold) {
             console.log("in A near MORE")
             position = `calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`;
          } else if (diffA <= nthrshld) {
@@ -174,16 +188,16 @@ export const Qobyz = () => {
          // console.log(diffD)
          const absDiff = Math.abs(diffD);
          // console.log("D[ " + absDiff + " ]")
-         if (absDiff <= 0.2) {
+         if (absDiff <= absThr) {
 
             position = 'calc(50% - 3px)';
 
             if (boolzhan) {playAudio();}
 
-         } else if (diffD < -0.2 && diffD > nthrshld) {
+         } else if (diffD < nAbsThr && diffD > nthrshld) {
             console.log("in D near LESS")
             position = `calc(50% - 3px - 5px - ${ parseInt(absDiff, 0) }px)`;
-         } else if (diffD > 0.2 && diffD < threshold) {
+         } else if (diffD > absThr && diffD < threshold) {
             console.log("in D near MORE")
             position = `calc(50% - 3px + 5px + ${ parseInt(absDiff, 0) }px)`;
          }else if (diffD <= nthrshld) {
