@@ -219,7 +219,7 @@ export const Qobyz = () => {
    return (
       <>
          <Dock/>
-   
+
          <div className="container">
             <BackWaves/>
             <div className="area">
@@ -234,7 +234,6 @@ export const Qobyz = () => {
                   }}
                >ре</button>
 
-            
                <button
                   className={`btn a-note-qyl${aColorClass}`} 
                   onClick={() => {
@@ -242,7 +241,7 @@ export const Qobyz = () => {
                   }}
                >ля</button>
                
-               <img className="img-qobyz" src="qyl1.png" alt="dombyra pic" />
+               <img className="img-qobyz" src="qyl1.png" alt="img qylqobyz" />
             </div>
          </div>
          <div className="numbers">

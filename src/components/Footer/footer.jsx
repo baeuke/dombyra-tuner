@@ -5,8 +5,8 @@ export const Footer = () => {
    return (
       <>
          <div className="footer">
-            @made by baeuke
-            <a href="https://www.instagram.com/nfactorial.school/">nfactorial incubator 2022</a>
+            made by Baurzhan Abenov
+            <a href="https://www.instagram.com/nfactorial.school/">nFactorial Incubator 2022</a>
          </div>
       </>
    );

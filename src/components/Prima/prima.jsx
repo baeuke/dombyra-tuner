@@ -49,8 +49,7 @@ export const Prima = () => {
 
    
 
-   // check if note changed to a too higher freq note, so that the filter is passed.
-
+   // check if note changed to a too higher freq note, so that the filter is passed:
    useEffect(() => {
 
       if ((prevNote === 'G' || prevNote === 'E' || prevNote === 'D') 
@@ -71,6 +70,7 @@ export const Prima = () => {
          global = 196;
       } 
    }, [note]);
+
    
    function usePrevious(value) {
       // The ref object is a generic container whose current property is mutable ...
@@ -88,8 +88,7 @@ export const Prima = () => {
 
    
 
-
-   function updatePitch(analyserNode, detector, input, sampleRate) {
+   const updatePitch = (analyserNode, detector, input, sampleRate) => {
       analyserNode.getFloatTimeDomainData(input);
       const [pitch, clarity] = detector.findPitch(input, sampleRate);
 
@@ -97,6 +96,7 @@ export const Prima = () => {
       
       if (matchesConditions) {
          const frq = Math.round(pitch * 10) / 10;
+         // console.log((Math.abs(frq - global)));
 
          if (Math.abs(frq - global) < 200) {
             
@@ -107,24 +107,61 @@ export const Prima = () => {
             setDiffE(frq - 659.2551);
             setClarity(Math.round(clarity * 100));
             global = frq;
-
          } else {
-            console.log("difference is too much");
+            // console.log("difference is too much");
          }
-         
-         // else if note == G and frq <100 => "Too low!"
-         
-
-
       }
-
-      window.setTimeout(() => updatePitch(analyserNode, detector, input, sampleRate), 100);
    }
+
+   // function updatePitch(analyserNode, detector, input, sampleRate) {
+   //    analyserNode.getFloatTimeDomainData(input);
+   //    const [pitch, clarity] = detector.findPitch(input, sampleRate);
+
+   //    const matchesConditions = (pitch >= minPitch && pitch <= maxPitch && 100 * clarity >= minClarityPercent);
+      
+   //    if (matchesConditions) {
+   //       const frq = Math.round(pitch * 10) / 10;
+
+   //       if (Math.abs(frq - global) < 200) {
+            
+   //          setPitch(frq);
+   //          setDiffG(frq - 195.9977);
+   //          setDiffD(frq - 293.6648);
+   //          setDiffA(frq - 440);
+   //          setDiffE(frq - 659.2551);
+   //          setClarity(Math.round(clarity * 100));
+   //          global = frq;
+
+   //       } else {
+   //          console.log("difference is too much");
+   //       }
+   //       // else if note == G and frq <100 => "Too low!"
+   //    }
+   //    window.setTimeout(() => updatePitch(analyserNode, detector, input, sampleRate), 100);
+   // }
+
+   // useEffect(() => {
+   //    // const audioContext = new window.AudioContext();
+   //    // const analyserNode = audioContext.createAnalyser();
+   
+   //    navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+   //       const audioContext = new window.AudioContext();
+   //       const analyserNode = audioContext.createAnalyser();
+   //       audioContext.createMediaStreamSource(stream).connect(analyserNode);
+   //       const detector = PitchDetector.forFloat32Array(analyserNode.fftSize);
+   //       const input = new Float32Array(detector.inputLength);
+
+   //       // global = detector.findPitch(input, audioContext.sampleRate)[0];
+
+   //       updatePitch(analyserNode, detector, input, audioContext.sampleRate);
+   //    });
+   // }, []);
 
    useEffect(() => {
       // const audioContext = new window.AudioContext();
       // const analyserNode = audioContext.createAnalyser();
-   
+      let interval;
+
       navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
          const audioContext = new window.AudioContext();
          const analyserNode = audioContext.createAnalyser();
@@ -134,8 +171,15 @@ export const Prima = () => {
 
          // global = detector.findPitch(input, audioContext.sampleRate)[0];
 
-         updatePitch(analyserNode, detector, input, audioContext.sampleRate);
+         interval = setInterval(() => { 
+            updatePitch(analyserNode, detector, input, audioContext.sampleRate)
+         }, 100);
       });
+
+      return () => {
+         console.log("RETURNED");
+         clearTimeout(interval);
+      }
    }, []);
    
 
@@ -275,48 +319,45 @@ export const Prima = () => {
 
          <div className="container pr">
             <BackWaves/>
+
             <div className="area">
                <div ref={originRef} className={`origin ${ boolzhan && ' theAnswer'}`}></div>
                <div ref={pointerRef} className="pointer" style={{ left: position }}></div>
             </div>
-            <div className="main">
-               {/* <div className="left"> */}
-               <div className="inmain-prima">
-                  <button
-                     className={`btn e-note-prima${eColorClass}`} 
-                     onClick={() => {
-                        setNote("E");
-                     }}
-                  >ми</button>
+            
+            <div className="parent-prima">
+               <button
+                  className={`btn d-note-prima${dColorClass}`} 
+                  onClick={() => {
+                     setNote("D");
+                  }}
+               >ре</button>
 
-                  <button
-                     className={`btn a-note-prima${aColorClass}`} 
-                     onClick={() => {
-                        setNote("A");
-                     }}
-                  >ля</button>
+            
+               <button
+                  className={`btn g-note-prima${gColorClass}`} 
+                  onClick={() => {
+                     setNote("G");
+                  }}
+               >соль</button>
 
-                  <button
-                     className={`btn d-note-prima${dColorClass}`} 
-                     onClick={() => {
-                        setNote("D");
-                     }}
-                  >ре</button>
+               <button
+                  className={`btn a-note-prima${aColorClass}`} 
+                  onClick={() => {
+                     setNote("A");
+                  }}
+               >ля</button>
 
-               
-                  <button
-                     className={`btn g-note-prima${gColorClass}`} 
-                     onClick={() => {
-                        setNote("G");
-                     }}
-                  >соль</button>
-                  <div className="center">
-                     <img className="pic" src="prima0.png" alt="dombyra pic" />
-                  </div>
-               </div>
-               
-               
+               <button
+                  className={`btn e-note-prima${eColorClass}`} 
+                  onClick={() => {
+                     setNote("E");
+                  }}
+               >ми</button>
+
+               <img className="img-prima" src="prima0.png" alt="img prima" />
             </div>
+
          </div>
          <div className="numbers">
             <div className="pitch">{pitch}</div>
