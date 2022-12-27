@@ -38,8 +38,14 @@ export const Qobyz = () => {
    const [diffA, setDiffA] = useState(0);
    const [diffD, setDiffD] = useState(0);
 
-   
-   function updatePitch(analyserNode, detector, input, sampleRate) {
+   const handleResize = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+   }
+
+   handleResize();
+
+   const updatePitch = (analyserNode, detector, input, sampleRate) => {
       analyserNode.getFloatTimeDomainData(input);
       const [pitch, clarity] = detector.findPitch(input, sampleRate);
 
@@ -57,19 +63,60 @@ export const Qobyz = () => {
             setClarity(Math.round(clarity * 100));
             global = frq;
          } else {
-            console.log("difference is too much");
+            // console.log("difference is too much");
          }
       }
-
-
-      window.setTimeout(() => updatePitch(analyserNode, detector, input, sampleRate), 100);
    }
 
+   // function updatePitch(analyserNode, detector, input, sampleRate) {
+   //    analyserNode.getFloatTimeDomainData(input);
+   //    const [pitch, clarity] = detector.findPitch(input, sampleRate);
+
+   //    const matchesConditions = (pitch >= minPitch && pitch <= maxPitch && 100 * clarity >= minClarityPercent);
+      
+   //    if (matchesConditions) {
+   //       const frq = Math.round(pitch * 10) / 10;
+   //       // console.log((Math.abs(frq - global)));
+
+   //       if (Math.abs(frq - global) < 200) {
+            
+   //          setPitch(frq);
+   //          setDiffA(frq - 220);
+   //          setDiffD(frq - 146.8324);
+   //          setClarity(Math.round(clarity * 100));
+   //          global = frq;
+   //       } else {
+   //          console.log("difference is too much");
+   //       }
+   //    }
+
+
+   //    window.setTimeout(() => updatePitch(analyserNode, detector, input, sampleRate), 100);
+   // }
+
+
+   // useEffect(() => {
+   //    // const audioContext = new window.AudioContext();
+   //    // const analyserNode = audioContext.createAnalyser();
+   
+   //    navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+   //       const audioContext = new window.AudioContext();
+   //       const analyserNode = audioContext.createAnalyser();
+   //       audioContext.createMediaStreamSource(stream).connect(analyserNode);
+   //       const detector = PitchDetector.forFloat32Array(analyserNode.fftSize);
+   //       const input = new Float32Array(detector.inputLength);
+
+   //       // global = detector.findPitch(input, audioContext.sampleRate)[0];
+
+   //       updatePitch(analyserNode, detector, input, audioContext.sampleRate);
+   //    });
+   // }, []);
 
    useEffect(() => {
       // const audioContext = new window.AudioContext();
       // const analyserNode = audioContext.createAnalyser();
-   
+      let interval;
+
       navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
          const audioContext = new window.AudioContext();
          const analyserNode = audioContext.createAnalyser();
@@ -79,8 +126,16 @@ export const Qobyz = () => {
 
          // global = detector.findPitch(input, audioContext.sampleRate)[0];
 
-         updatePitch(analyserNode, detector, input, audioContext.sampleRate);
+         interval = setInterval(() => { 
+            updatePitch(analyserNode, detector, input, audioContext.sampleRate)
+         }, 150);
       });
+
+      return () => {
+         console.log("RETURNED");
+         clearTimeout(interval);
+      }
+      
    }, []);
    
 
