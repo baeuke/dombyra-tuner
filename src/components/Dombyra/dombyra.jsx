@@ -55,7 +55,12 @@ export const Dombyra = () => {
    }
 
    handleResize();
+
+   useEffect(() => {
+      handleResize();
+   }, []);
    
+
 
    const updatePitch = (analyserNode, detector, input, sampleRate) => {
       analyserNode.getFloatTimeDomainData(input);
