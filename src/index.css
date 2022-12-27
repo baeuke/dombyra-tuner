@@ -10,7 +10,9 @@
 
    --btnmin: 50px;
 
-   --imgdiv:
+   /* --imgdiv: */
+
+
 }
 
 body {
@@ -35,6 +37,7 @@ body {
 
 .container {
    height: 100vh;
+   height: calc(var(--vh, 1vh) * 100);
    /* height: calc(var(--vh, 1vh) * 100); */
    /* height: -webkit-fill-available; */
    width: 100vw;

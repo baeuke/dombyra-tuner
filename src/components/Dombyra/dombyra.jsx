@@ -34,6 +34,7 @@ const playAudio = async () => {
 let c = 0;
 let boolzhan = true;
 
+
 export const Dombyra = () => {
    // const {width, height} = useWindowSize();
 
@@ -47,6 +48,13 @@ export const Dombyra = () => {
    const [diffG, setDiffG] = useState(0);
    const [diffD, setDiffD] = useState(0);
    const[ position, setPosition] = useState("calc(50% - 3px)");
+
+   const handleResize = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+   }
+
+   handleResize();
    
 
    const updatePitch = (analyserNode, detector, input, sampleRate) => {
@@ -77,7 +85,6 @@ export const Dombyra = () => {
          // clearTimeout(interval)
       // }
    }
-
 
    
    
