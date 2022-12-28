@@ -246,15 +246,15 @@ export const Qobyz = () => {
                   onClick={() => {
                      setNote("D");
                   }}
-               >ре</button>
-
+               >d</button>
+               {/* ре */}
                <button
                   className={`btn a-note-qyl${aColorClass}`} 
                   onClick={() => {
                      setNote("A");
                   }}
-               >ля</button>
-               
+               >a</button>
+               {/* ля */}
                <img className="img-qobyz" src="qyl1.png" alt="img qylqobyz" />
             </div>
          </div>

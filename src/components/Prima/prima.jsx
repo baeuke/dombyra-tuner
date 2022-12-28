@@ -342,30 +342,29 @@ export const Prima = () => {
                   onClick={() => {
                      setNote("D");
                   }}
-               >ре</button>
-
-            
+               >d</button>
+               {/* ре */}
                <button
                   className={`btn g-note-prima${gColorClass}`} 
                   onClick={() => {
                      setNote("G");
                   }}
-               >соль</button>
-
+               >g</button>
+               {/* соль */}
                <button
                   className={`btn a-note-prima${aColorClass}`} 
                   onClick={() => {
                      setNote("A");
                   }}
-               >ля</button>
-
+               >a</button>
+               {/* ля */}
                <button
                   className={`btn e-note-prima${eColorClass}`} 
                   onClick={() => {
                      setNote("E");
                   }}
-               >ми</button>
-
+               >e</button>
+               {/* ми */}
                <img className="img-prima" src="prima-qobyz.png" alt="img prima" />
             </div>
 

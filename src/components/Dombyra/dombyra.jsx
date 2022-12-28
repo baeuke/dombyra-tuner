@@ -236,14 +236,15 @@ export const Dombyra = () => {
                   onClick={() => {
                      setNote("D");
                   }}
-               >ре</button>
+               >d</button>
+               {/* ре */}
                <button
                   className={`btn g-note${gColorClass}`} 
                   onClick={() => {
                      setNote("G");
                   }}
-               >соль</button>
-               
+               >g</button>
+               {/* соль */}
                <img className="img-dombyra" src="dombyra.png" alt="img dombyra" />
             </div>
          </div>
