@@ -1,10 +1,9 @@
 # Dombyra Tuner
 
+Welcome to Dombyra Tuner, a simple web application for tuning your dombyra, prima-qobyz, and qyl-qobyz! This tool is designed to help you tune kazakh musical instruments quickly and accurately, ensuring that you get the perfect sound every time you play.
 
 <img src="tuner_logo-02.png" alt="Dombyra Tuner Logo" width="50%">
 
-
-Welcome to Dombyra Tuner, a simple web application for tuning your dombyra, prima-qobyz, and qyl-qobyz! This tool is designed to help you tune kazakh musical instruments quickly and accurately, ensuring that you get the perfect sound every time you play.
 
 ## Table of Contents
 
