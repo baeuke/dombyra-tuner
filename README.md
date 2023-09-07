@@ -1,3 +1,47 @@
+# Dombyra Tuner Readme
+
+![Dombyra Tuner Logo](https://raw.githubusercontent.com/baeuke/dombyra-tuner/main/assets/logo.png)
+
+Welcome to Dombyra Tuner, a simple web application for tuning your dombyra! This tool is designed to help you tune your dombyra quickly and accurately, ensuring that you get the perfect sound every time you play.
+
+## Table of Contents
+
+- [Features](#features)
+- [Demo](#demo)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+
+- **Simple and Intuitive Interface**: Dombyra Tuner provides a user-friendly interface that makes tuning your dombyra a breeze, even if you're a beginner.
+
+- **Accurate Tuning**: The tuner uses advanced algorithms to ensure precise tuning, helping you achieve the best sound quality.
+
+- **Support for Multiple Tuning Scales**: Dombyra Tuner supports various tuning scales commonly used for dombyra, including Dombra 1st, Dombra 2nd, and more.
+
+- **Real-time Feedback**: Get instant feedback on whether your strings are too high or too low, making the tuning process efficient and hassle-free.
+
+- **Mobile-Friendly**: The application is responsive and works well on both desktop and mobile devices, so you can tune your dombyra on the go.
+
+## Demo
+
+You can try out the Dombyra Tuner by visiting the following link: [Dombyra Tuner Demo](https://baeuke.github.io/dombyra-tuner/)
+
+## Getting Started
+
+To use Dombyra Tuner on your local machine, follow these steps:
+
+1. Clone the repository to your computer:
+
+   ```bash
+   git clone https://github.com/baeuke/dombyra-tuner.git
+
+
+
+
+---
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
