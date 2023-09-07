@@ -1,25 +1,20 @@
-# Dombyra Tuner Readme
+# Dombyra Tuner
 
-![Dombyra Tuner Logo](https://raw.githubusercontent.com/baeuke/dombyra-tuner/main/assets/logo.png)
+![Dombyra Tuner Logo](tuner_logo-02.png)
 
-Welcome to Dombyra Tuner, a simple web application for tuning your dombyra! This tool is designed to help you tune your dombyra quickly and accurately, ensuring that you get the perfect sound every time you play.
+Welcome to Dombyra Tuner, a simple web application for tuning your dombyra, prima-qobyz, and qyl-qobyz! This tool is designed to help you tune kazakh musical instruments quickly and accurately, ensuring that you get the perfect sound every time you play.
 
 ## Table of Contents
 
 - [Features](#features)
 - [Demo](#demo)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
-- **Simple and Intuitive Interface**: Dombyra Tuner provides a user-friendly interface that makes tuning your dombyra a breeze, even if you're a beginner.
+- **Simple and Intuitive Interface**: Dombyra Tuner provides a user-friendly interface that makes tuning your instruments a breeze, even if you're a beginner.
 
 - **Accurate Tuning**: The tuner uses advanced algorithms to ensure precise tuning, helping you achieve the best sound quality.
-
-- **Support for Multiple Tuning Scales**: Dombyra Tuner supports various tuning scales commonly used for dombyra, including Dombra 1st, Dombra 2nd, and more.
 
 - **Real-time Feedback**: Get instant feedback on whether your strings are too high or too low, making the tuning process efficient and hassle-free.
 
@@ -27,7 +22,7 @@ Welcome to Dombyra Tuner, a simple web application for tuning your dombyra! This
 
 ## Demo
 
-You can try out the Dombyra Tuner by visiting the following link: [Dombyra Tuner Demo](https://baeuke.github.io/dombyra-tuner/)
+You can try out the Dombyra Tuner by visiting the following link: [Dombyra Tuner]([https://baeuke.github.io/dombyra-tuner/](https://dombyra-tuner.vercel.app/))
 
 ## Getting Started
 
